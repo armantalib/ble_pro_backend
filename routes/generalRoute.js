@@ -36,7 +36,7 @@ router.get('/dailyAyat/all/:id?', [auth], generalController.getDuaApp);
 router.post('/zone/create', [auth, admin], generalController.createZone);
 router.get('/zone/all/:id?', generalController.getZoneApp);
 router.get('/admin/zone/get/:id/:search?', [auth, admin], generalController.getZoneAdmin);
-
+router.delete('/admin/zone/:id', [auth, admin], generalController.deleteZone);
 
 
 

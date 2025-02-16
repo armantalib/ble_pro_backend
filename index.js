@@ -30,6 +30,9 @@ const config = {
     credential: admin.credential.cert(config),
     storageBucket: "gs://zikr_bucket"
   });
+
+  // console.log("ADmin",admin);
+  
   
   app.use(cors());
 
