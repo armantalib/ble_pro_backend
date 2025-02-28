@@ -50,6 +50,7 @@ exports.getZoneApp = async (req, res) => {
 
   try {
     const data = await Zone.find(query).sort({ _id: -1 })
+    .limit(pageSize)
       .lean();
 
     if (data.length > 0) {
