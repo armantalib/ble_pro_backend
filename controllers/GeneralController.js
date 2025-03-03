@@ -46,7 +46,7 @@ exports.getZoneApp = async (req, res) => {
     query._id = { $lt: req.params.id };
   }
 
-  const pageSize = 10;
+  const pageSize = 6;
 
   try {
     const data = await Zone.find(query).sort({ _id: -1 })
