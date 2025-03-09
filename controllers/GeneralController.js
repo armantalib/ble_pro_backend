@@ -46,7 +46,7 @@ exports.getZoneApp = async (req, res) => {
     query._id = { $lt: req.params.id };
   }
 
-  const pageSize = 10;
+  const pageSize = 40;
 
   try {
     const data = await Zone.find(query).sort({ _id: -1 })
@@ -98,6 +98,34 @@ exports.getZoneAdmin = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ message: req.user.lang == 'spanish' ? lang["error"] : lang["error"] });
+  }
+};
+
+exports.updateZone = async (req, res) => {
+  try {
+    const {
+      title, cords,
+      id
+    } = req.body;
+
+    const updateFields = Object.fromEntries(
+      Object.entries({
+        title, cords,
+      }).filter(([key, value]) => value !== undefined)
+    );
+    if (Object.keys(updateFields).length === 0) {
+      return res.status(400).send({ success: false, message: 'Please send correct data' });
+    }  
+    const data = await Zone.findByIdAndUpdate(id, updateFields, {
+      new: true
+    });
+  
+    if (!data) return res.status(404).send({ success: false, message:'Please send id of object' });
+  
+    res.send({ success: true, message: 'Update data successfully', data });
+
+  } catch (error) {
+    return res.status(500).json({ error: lang["error"] });
   }
 };
 

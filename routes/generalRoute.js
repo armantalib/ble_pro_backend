@@ -37,6 +37,7 @@ router.post('/zone/create', [auth, admin], generalController.createZone);
 router.get('/zone/all/:id?', generalController.getZoneApp);
 router.get('/admin/zone/get/:id/:search?', [auth, admin], generalController.getZoneAdmin);
 router.delete('/admin/zone/:id', [auth, admin], generalController.deleteZone);
+router.put('/admin/zone/update', [auth, admin], generalController.updateZone);
 
 
 
